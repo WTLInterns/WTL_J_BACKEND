@@ -100,7 +100,7 @@ public class SecurityConfig {
 		   // private PasswordEncoder passwordEncoder;
 
 
-		    @Bean
+	@Bean
     public RestTemplate restTemplate() {
         return new RestTemplate();
     }

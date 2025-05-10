@@ -1,6 +1,7 @@
 package com.workshop.CarRental.Controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -24,6 +25,7 @@ import com.workshop.CarRental.DTO.DriverLoginResponse;
 import com.workshop.CarRental.DTO.UnifiedLoginRequest;
 import com.workshop.CarRental.DTO.UnifiedLoginResponse;
 import com.workshop.CarRental.Entity.CarRentalUser;
+import com.workshop.CarRental.Repository.CarRentalRepository;
 import com.workshop.CarRental.Service.AuthService;
 import com.workshop.CarRental.Service.CarRentalBookingService;
 import com.workshop.DTO.LoginRequest;
@@ -44,16 +46,18 @@ public class AuthController {
     @Autowired
     PasswordEncoder passwordEncoder;
 
+
     @PostMapping("/register")
     public CarRentalUser createCarRentalUser(@RequestBody CarRentalUser carRentalUser){
         return this.authService.registerUser(carRentalUser);
-
-    }
+}
 
     @GetMapping("/getById")
     public CarRentalUser getByUserId(@PathVariable int id){
         return this.carRentalBookingService.getUserById(id);
     }
+
+    
 
     // @PostMapping("/userlogin")
     // public ResponseEntity<CarRentalLoginResponse> loginUser(@RequestBody CarRentalLoginRequest loginRequest) {
@@ -236,6 +240,11 @@ return this.carRentalBookingService.getProfile(id);
     @PutMapping("/update-profile/{id}")
     public CarRentalUser updateProfile(@PathVariable int id, @RequestBody CarRentalUser carRentalUser){
 return this.carRentalBookingService.updateProfileById(id, carRentalUser);
+    }
+
+    @GetMapping("/getCarRentalUserById/{id}")
+    public CarRentalUser getUserById(@PathVariable int id){
+        return this.carRentalBookingService.getCarRentalUserById(id);
     }
     
 
